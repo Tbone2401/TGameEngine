@@ -119,12 +119,17 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TestInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="InputCommand.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="srutil\Delegate.h" />
+    <ClInclude Include="srutil\DelegateBase.h" />
+    <ClInclude Include="srutil\MultiCastDelegate.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TestInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

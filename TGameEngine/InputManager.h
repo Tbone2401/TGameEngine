@@ -1,8 +1,11 @@
 #pragma once
 
-enum ActionId : uint8_t
+#include "stdafx.h"
+#include <map>
+
+enum ActionID : uint8_t
 {
-	WPRess = 0
+	WPress = 0
 };
 
 enum GamepadIndex : DWORD
@@ -22,16 +25,7 @@ enum InputTriggerState
 
 struct InputAction
 {
-	InputAction() :
-		ActionID(-1),
-		TriggerState(InputTriggerState::Pressed),
-		KeyboardCode(-1),
-		MouseButtonCode(-1),
-		GamepadButtonCode(0),
-		PlayerIndex(GamepadIndex::PlayerOne),
-		IsTriggered(false) {}
-
-	InputAction(int actionID, InputTriggerState triggerState = InputTriggerState::Pressed, int keyboardCode = -1, int mouseButtonCode = -1, WORD gamepadButtonCode = 0, GamepadIndex playerIndex = GamepadIndex::PlayerOne) :
+	InputAction(ActionID actionID, InputTriggerState triggerState = InputTriggerState::Pressed, int keyboardCode = -1, int mouseButtonCode = -1, WORD gamepadButtonCode = 0, GamepadIndex playerIndex = GamepadIndex::PlayerOne) :
 		ActionID(actionID),
 		TriggerState(triggerState),
 		KeyboardCode(keyboardCode),
@@ -40,7 +34,7 @@ struct InputAction
 		PlayerIndex(playerIndex),
 		IsTriggered(false) {}
 
-	int ActionID;
+	ActionID ActionID;
 	InputTriggerState TriggerState;
 	int KeyboardCode; //VK_... (Range 0x07 <> 0xFE)
 	int MouseButtonCode; //VK_... (Range 0x00 <> 0x06)
@@ -49,27 +43,43 @@ struct InputAction
 	bool IsTriggered;
 };
 
-
 class InputManager :IComponent
 {
 public:
-	InputManager();
-	~InputManager();
+	static InputManager& getInstance()
+	{
+		static InputManager    instance; // Guaranteed to be destroyed.
+										 // Instantiated on first use.
+		return instance;
+	}
+private:
+	InputManager() {}         // Constructor? (the {} brackets) are needed here.
+
+
+
+
+	std::map<int, SA::delegate<void()>> m_KeyDelegates;
+
+	SA::delegate<void()> m_voidDelegate;
+	bool IsPressed();
+	std::vector<ActionID> m_Actions;
+
+protected:
+
+	void Destroy();
+
+public:
+	// Note: Scott Meyers mentions in his Effective Modern
+	//       C++ book, that deleted functions should generally
+	//       be public as it results in better error messages
+	//       due to the compilers behavior to check accessibility
+	//       before deleted status
+	InputManager(InputManager const&) = delete;
+	void operator=(InputManager const&) = delete;
+
 
 	void Initialise();
 	void Tick();
-	void Destroy();
-
-private:
-	bool IsPressed();
-
-
-
-private:
-	// -------------------------
-	//Disabling copy constructor and assignment operator.
-	// -------------------------
-	InputManager(const InputManager& t);
-	InputManager& operator=(const InputManager& t);
+	//TODO: add a function pointer here
+	void AddInput(SA::delegate<void()> delegateToCall, int key);
 };
-

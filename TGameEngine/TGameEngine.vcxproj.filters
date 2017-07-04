@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{368fbbea-5524-43c8-9749-1c5f73a8be89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{9674ea85-69d2-4f5e-b0d7-3fa6d5dae0c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,6 +45,9 @@
     <ClCompile Include="IComponent.cpp">
       <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="TestInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputCommand.h">
@@ -54,6 +60,18 @@
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="srutil\Delegate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="srutil\DelegateBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="srutil\MultiCastDelegate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
