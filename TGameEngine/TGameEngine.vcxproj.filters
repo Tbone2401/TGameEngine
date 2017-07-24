@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{9674ea85-69d2-4f5e-b0d7-3fa6d5dae0c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Base">
+      <UniqueIdentifier>{bb8f4e9d-cda6-4436-83a1-7c81aad11b95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -46,6 +49,9 @@
       <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
     <ClCompile Include="TestInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VulkanBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="srutil\MultiCastDelegate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

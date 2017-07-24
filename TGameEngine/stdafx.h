@@ -2,8 +2,7 @@
 #include <windows.h>
 #include <cstdint>
 #include <vector>
-//#include "srutil\Delegate.h"
-//#include "srutil\DelegateBase.h"
+#include <string>
 #include "srutil\MultiCastDelegate.h"
 
 #include "IComponent.h"

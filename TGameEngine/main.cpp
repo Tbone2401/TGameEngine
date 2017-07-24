@@ -1,8 +1,14 @@
 #include "stdafx.h"
+#define GLFW_INCLUDE_VULKAN
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <GLFW\glfw3.h>
 #include "InputManager.h"
+#include "VulkanBase.h"
 #include "TestInput.h"
 #include <stdlib.h>
 #include <iostream>
+
 
 int main()
 {
@@ -13,6 +19,8 @@ int main()
 	TestInput testInput;
 	testInput.Initialise();
 	InputManager::getInstance().Initialise();
+	VulkanBase::VulkanBase base;
+	base.Initialise();
 
 	char test[256];
 
