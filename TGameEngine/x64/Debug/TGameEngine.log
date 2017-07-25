@@ -1,3 +1,2 @@
 ﻿  VulkanBase.cpp
-  TGameEngine.vcxproj -> D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.exe
-  TGameEngine.vcxproj -> D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.pdb (Partial PDB)
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(126): error C2065: 'vInstance': undeclared identifier
