@@ -6,36 +6,41 @@
 #include <GLFW\glfw3.h>
 #include <map>
 #include <vulkan\vulkan.h>
+#include "VulkanHelper.h"
 
-namespace VulkanBase
+class VulkanBase
 {
-	class VulkanBase
-	{
-	public:
+public:
 
-		VkPhysicalDevice physicalDevice;
-		VkDevice logicalDevice;
+	VkPhysicalDevice physicalDevice;
+	VkDevice logicalDevice;
 
 
-		void Initialise();
-		VulkanBase();
-		~VulkanBase();
+	void Initialise();
+	VulkanBase();
+	~VulkanBase();
 
-	private:
-		GLFWwindow* pWindow = nullptr;
+private:
+	GLFWwindow* pWindow = nullptr;
 
-		VkInstance vInstance;
-		VkDevice device;
+	VulkanHelper vHelper;
+	VkInstance vInstance;
+	VkDevice device;
+	VkQueue queue;
+	VkDebugReportCallbackEXT callback;
+	VkSurfaceKHR surface;
 
-		int windowHeight;
-		int windowWidth;
+	int windowHeight;
+	int windowWidth;
 
-		//VULKAN FUNCTIONS
-		void createInstance();
+	//VULKAN FUNCTIONS
+	void createInstance();
 
-		void createWindow();
-		void readConfig();
-	};
-}
+	void setupDebugCallBack();
 
+	void createSurface();
+
+	void createWindow();
+	void readConfig();
+};
 

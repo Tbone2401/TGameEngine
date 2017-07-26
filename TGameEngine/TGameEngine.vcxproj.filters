@@ -31,6 +31,15 @@
     <Filter Include="Source Files\Base">
       <UniqueIdentifier>{bb8f4e9d-cda6-4436-83a1-7c81aad11b95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Base">
+      <UniqueIdentifier>{d04e81b7-a136-4038-a88a-8a17d6978a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{8a04e42f-b76d-4c17-8ff2-f95bca6adc65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{202779c8-1748-43c6-8171-dcfd48e2b47e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,7 +61,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VulkanBase.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="VulkanHelper.cpp">
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +93,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VulkanBase.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanHelper.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

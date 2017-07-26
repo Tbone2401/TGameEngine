@@ -1,2 +1,4 @@
-﻿  VulkanBase.cpp
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(126): error C2065: 'vInstance': undeclared identifier
+﻿  main.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  TGameEngine.vcxproj -> D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.exe
+  TGameEngine.vcxproj -> D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.pdb (Partial PDB)

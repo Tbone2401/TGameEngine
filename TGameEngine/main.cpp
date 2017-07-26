@@ -21,7 +21,7 @@ int main()
 	TestInput testInput;
 	testInput.Initialise();
 	InputManager::getInstance().Initialise();
-	VulkanBase::VulkanBase base;
+	VulkanBase base;
 	base.Initialise();
 
 	char test[256];
