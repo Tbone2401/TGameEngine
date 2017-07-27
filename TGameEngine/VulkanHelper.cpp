@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "VulkanHelper.h"
 
-
 VulkanHelper::VulkanHelper()
 {
 }
@@ -185,7 +184,7 @@ VkSubmitInfo VulkanHelper::submitInfo()
 	return submitInfo;
 }
 
-bool VulkanHelper::checkValidationLayerSupport(const std::vector<const char*> *validationLayers )
+bool VulkanHelper::checkValidationLayerSupport(const std::vector<const char*> *validationLayers)
 {
 	uint32_t layerCount;
 	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
@@ -211,4 +210,21 @@ bool VulkanHelper::checkValidationLayerSupport(const std::vector<const char*> *v
 		}
 	}
 	return true;
+}
+
+std::vector<const char*> VulkanHelper::getRequiredExtensions()
+{
+	std::vector<const char*> extensions;
+
+	unsigned int glfwExtensionCount = 0;
+	const char** glfwExtensions;
+	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+	for (unsigned int i = 0; i < glfwExtensionCount; i++)
+	{
+		extensions.push_back(glfwExtensions[i]);
+	}
+	extensions.push_back(VK_EXT_DEBUG_REPORT_EXTENSION_NAME);
+
+	return extensions;
 }

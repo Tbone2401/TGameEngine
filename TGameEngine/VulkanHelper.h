@@ -1,6 +1,6 @@
 #pragma once
 #include <vulkan\vulkan.h>
-
+#include <GLFW\glfw3.h>
 
 class VulkanHelper
 {
@@ -27,5 +27,6 @@ public:
 	VkEventCreateInfo eventCreateInfo();
 	VkSubmitInfo submitInfo();
 	bool checkValidationLayerSupport(const std::vector<const char*> *validationLayers);
+	std::vector<const char*> getRequiredExtensions();
 };
 
