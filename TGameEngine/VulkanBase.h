@@ -30,11 +30,6 @@ struct SwapChainSupportDetails
 class VulkanBase
 {
 public:
-
-	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-	VkDevice logicalDevice;
-
-
 	void Initialise();
 	VulkanBase();
 	~VulkanBase();
@@ -50,29 +45,34 @@ private:
 	VkSurfaceKHR surface;
 	VkQueue graphicsQueue;
 	VkQueue presentQueue;
+	VkDevice logicalDevice;
+	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+	VkFormat swapChainImageFormat;
+	std::vector<VkImage> swapChainImages;
+	std::vector<VkImageView> swapchainImageViews;
+	VkExtent2D swapChainExtent;
+	VkSwapchainKHR swapChain;
+	VkRenderPass renderPass;
 
 	int windowHeight;
 	int windowWidth;
 
 	//VULKAN FUNCTIONS
 	void createInstance();
-
 	void setupDebugCallBack();
-
 	void createSurface();
-
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
-
 	void createLogicalDevice();
-
+	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR & capabilities);
 	SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
-
+	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
+	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR> availablePresentModes);
+	void createImageViews();
+	void createRenderPass();
 	bool isDeviceSuitable(VkPhysicalDevice device);
-
 	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
-
 	void pickPhysicalDevice();
-
+	void createSwapChain();
 	void createWindow();
 	void readConfig();
 };
