@@ -66,6 +66,9 @@
     <ClCompile Include="VulkanHelper.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="vulkanSwapchain.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputCommand.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="VulkanHelper.h">
       <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="vulkanSwapchain.h">
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

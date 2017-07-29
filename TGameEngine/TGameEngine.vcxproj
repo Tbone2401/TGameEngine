@@ -138,6 +138,7 @@
     <ClCompile Include="TestInput.cpp" />
     <ClCompile Include="VulkanBase.cpp" />
     <ClCompile Include="VulkanHelper.cpp" />
+    <ClCompile Include="vulkanSwapchain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IComponent.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="TestInput.h" />
     <ClInclude Include="VulkanBase.h" />
     <ClInclude Include="VulkanHelper.h" />
+    <ClInclude Include="vulkanSwapchain.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
