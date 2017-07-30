@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+x64/Debug/TGameEngine.pdb
+*.pdb
+*.opendb

@@ -5,19 +5,21 @@
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <GLFW\glfw3.h>
 #include <map>
+#include <array>
 #include <vulkan\vulkan.h>
 #include "VulkanHelper.h"
+#include "vulkanSwapchain.h"
 
-struct QueueFamilyIndices
-{
-	int graphicsFamily = -1;
-	int presentFamily = -1;
-
-	bool isComplete()
-	{
-		return graphicsFamily >= 0 && presentFamily >= 0;
-	}
-};
+//struct QueueFamilyIndices
+//{
+//	int graphicsFamily = -1;
+//	int presentFamily = -1;
+//
+//	bool isComplete()
+//	{
+//		return graphicsFamily >= 0 && presentFamily >= 0;
+//	}
+//};
 
 struct SwapChainSupportDetails
 {
@@ -25,6 +27,46 @@ struct SwapChainSupportDetails
 	std::vector<VkSurfaceFormatKHR> formats;
 	std::vector<VkPresentModeKHR> presentModes;
 };
+
+struct FrameBufferAttachment {
+	VkImage image;
+	VkDeviceMemory mem;
+	VkImageView view;
+	VkFormat format;
+	void destroy(VkDevice device)
+	{
+		vkDestroyImage(device, image, nullptr);
+		vkDestroyImageView(device, view, nullptr);
+		vkFreeMemory(device, mem, nullptr);
+	}
+};
+
+struct FrameBuffer {
+	int32_t width, height;
+	VkFramebuffer frameBuffer;
+	FrameBufferAttachment depth;
+	VkRenderPass renderPass;
+	void setSize(int32_t w, int32_t h)
+	{
+		this->width = w;
+		this->height = h;
+	}
+	void destroy(VkDevice device)
+	{
+		vkDestroyFramebuffer(device, frameBuffer, nullptr);
+		vkDestroyRenderPass(device, renderPass, nullptr);
+	}
+};
+
+
+struct {
+	struct Offscreen : public FrameBuffer {
+		std::array<FrameBufferAttachment, 3> attachments;
+	} offscreen;
+	struct SSAO : public FrameBuffer {
+		std::array<FrameBufferAttachment, 1 > attachments;
+	} ssao, ssaoBlur;
+} frameBuffers;
 
 
 class VulkanBase
@@ -37,7 +79,6 @@ public:
 private:
 	GLFWwindow* pWindow = nullptr;
 
-	VulkanHelper vHelper;
 	VkInstance vInstance;
 	VkDevice device;
 	VkQueue queue;
@@ -53,9 +94,10 @@ private:
 	VkExtent2D swapChainExtent;
 	VkSwapchainKHR swapChain;
 	VkRenderPass renderPass;
+	vulkanSwapchain swapchain;
 
-	int windowHeight;
-	int windowWidth;
+	uint32_t windowHeight;
+	uint32_t windowWidth;
 
 	//VULKAN FUNCTIONS
 	void createInstance();

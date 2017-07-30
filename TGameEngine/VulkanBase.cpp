@@ -87,8 +87,12 @@ void VulkanBase::Initialise()
 	createSurface();
 	pickPhysicalDevice();
 	createLogicalDevice();
-	createSwapChain();
-	createImageViews();
+	swapchain.connect(vInstance, physicalDevice, device);
+	swapchain.initSurface(vInstance, pWindow, device);
+	swapchain.create(&windowWidth, &windowHeight, true);
+	//createSwapChain();
+	//createImageViews();
+
 }
 
 VulkanBase::VulkanBase()
@@ -112,6 +116,7 @@ VulkanBase::~VulkanBase()
 
 	glfwTerminate();
 }
+
 void VulkanBase::createWindow()
 {
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
@@ -150,7 +155,7 @@ void VulkanBase::readConfig()
 
 void VulkanBase::createInstance()
 {
-	if (enableValidationLayers && ! vHelper.checkValidationLayerSupport(&validationLayers))
+	if (enableValidationLayers && ! VulkanHelper::checkValidationLayerSupport(&validationLayers))
 	{
 		throw std::runtime_error("validation layers requested, but not available!");
 	}
@@ -167,7 +172,7 @@ void VulkanBase::createInstance()
 	createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	createInfo.pApplicationInfo = &appInfo;
 
-	auto extensions = vHelper.getRequiredExtensions();
+	auto extensions = VulkanHelper::getRequiredExtensions();
 	createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
 	createInfo.ppEnabledExtensionNames = extensions.data();
 
@@ -570,7 +575,7 @@ void VulkanBase::createRenderPass()
 	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 
 	VkAttachmentDescription depthAttachment = {};
-	depthAttachment.format = vHelper.getSupportedDepthFormat(physicalDevice);//gets best possible depth format for this application
+	depthAttachment.format = VulkanHelper::getSupportedDepthFormat(physicalDevice);//gets best possible depth format for this application
 	depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
 	depthAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
 	depthAttachment.storeOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;

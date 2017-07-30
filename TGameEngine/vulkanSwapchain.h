@@ -28,6 +28,9 @@ public:
 	void initSurface(VkInstance instance, GLFWwindow* pWindow, VkDevice device);
 	void connect(VkInstance instance, VkPhysicalDevice physDevice, VkDevice device);
 	void create(uint32_t *width, uint32_t *height, bool vsync = false);
+	VkResult queuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore = VK_NULL_HANDLE);
+
+	void cleanup();
 
 private:
 	VkInstance vInstance;

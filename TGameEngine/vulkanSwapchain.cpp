@@ -155,7 +155,7 @@ QueueFamilyIndices vulkanSwapchain::findQueueFamilies()
 	return indices;
 }
 
-void vulkanSwapchain::create(uint32_t *width, uint32_t *height, bool vsync = true)
+void vulkanSwapchain::create(uint32_t *width, uint32_t *height, bool vsync)
 {
 	VkResult err;
 	VkSwapchainKHR oldSwapchain = swapChain; //old one is needed for the creation of a new one
@@ -264,4 +264,70 @@ void vulkanSwapchain::create(uint32_t *width, uint32_t *height, bool vsync = tru
 	{
 		throw std::runtime_error("Failed to get swapchain Images!");
 	}
+
+	buffers.resize(imageCount);
+	for (uint32_t i = 0; i < imageCount; i++)
+	{
+		VkImageViewCreateInfo colorAttachmentView = {};
+		colorAttachmentView.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+		colorAttachmentView.pNext = NULL;
+		colorAttachmentView.format = colorFormat;
+		colorAttachmentView.components = {
+			VK_COMPONENT_SWIZZLE_R,
+			VK_COMPONENT_SWIZZLE_G,
+			VK_COMPONENT_SWIZZLE_B,
+			VK_COMPONENT_SWIZZLE_A
+		};
+		colorAttachmentView.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		colorAttachmentView.subresourceRange.baseMipLevel = 0;
+		colorAttachmentView.subresourceRange.levelCount = 1;
+		colorAttachmentView.subresourceRange.baseArrayLayer = 0;
+		colorAttachmentView.subresourceRange.layerCount = 1;
+		colorAttachmentView.viewType = VK_IMAGE_VIEW_TYPE_2D;
+		colorAttachmentView.flags = 0;
+
+		buffers[i].image = images[i];
+
+		colorAttachmentView.image = buffers[i].image;
+
+		err = vkCreateImageView(vDevice, &colorAttachmentView, nullptr, &buffers[i].view);
+		if (err != VK_SUCCESS)
+		{
+			throw std::runtime_error("Failed to get swapchain buffers!");
+		}
+	}
+}
+
+VkResult vulkanSwapchain::queuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore)
+{
+	VkPresentInfoKHR presentInfo = {};
+	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+	presentInfo.pNext = NULL;
+	presentInfo.swapchainCount = 1;
+	presentInfo.pSwapchains = &swapChain;
+	presentInfo.pImageIndices = &imageIndex;
+
+	if (waitSemaphore != VK_NULL_HANDLE)
+	{
+		presentInfo.pWaitSemaphores = &waitSemaphore;
+		presentInfo.waitSemaphoreCount = 1;
+	}
+	return vkQueuePresentKHR(queue, &presentInfo);
+}
+void vulkanSwapchain::cleanup()
+{
+	if (swapChain != VK_NULL_HANDLE)
+	{
+		for (uint32_t i = 0; i < imageCount; i++)
+		{
+			vkDestroyImageView(vDevice, buffers[i].view, nullptr);
+		}
+	}
+	if (surface != VK_NULL_HANDLE)
+	{
+		vkDestroySwapchainKHR(vDevice, swapChain, nullptr);
+		vkDestroySurfaceKHR(vInstance, surface, nullptr);
+	}
+	surface = VK_NULL_HANDLE;
+	swapChain = VK_NULL_HANDLE;
 }

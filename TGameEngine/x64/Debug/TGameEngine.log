@@ -1,4 +1,10 @@
-﻿  VulkanBase.cpp
+﻿  stdafx.cpp
+  vulkanSwapchain.cpp
+  VulkanHelper.cpp
+  VulkanDevice.cpp
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkandevice.cpp(47): warning C4458: declaration of 'properties' hides class member
+  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkandevice.h(17): note: see declaration of 'VulkanDevice::properties'
+  VulkanBase.cpp
 d:\libraries\glm-0.9.8.4\glm\glm\detail\type_vec2.hpp(45): warning C4201: nonstandard extension used: nameless struct/union
   d:\libraries\glm-0.9.8.4\glm\glm\detail\type_vec2.hpp(206): note: see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
 d:\libraries\glm-0.9.8.4\glm\glm\detail\type_vec2.hpp(46): warning C4201: nonstandard extension used: nameless struct/union
@@ -18,17 +24,23 @@ d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(42
 d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(41): warning C4100: 'obj': unreferenced formal parameter
 d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(40): warning C4100: 'objType': unreferenced formal parameter
 d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(39): warning C4100: 'flags': unreferenced formal parameter
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(210): warning C4189: 'result': local variable is initialized but not referenced
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(218): warning C4458: declaration of 'device' hides class member
-  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(42): note: see declaration of 'VulkanBase::device'
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(253): warning C4458: declaration of 'device' hides class member
-  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(42): note: see declaration of 'VulkanBase::device'
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(317): warning C4458: declaration of 'device' hides class member
-  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(42): note: see declaration of 'VulkanBase::device'
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(336): warning C4458: declaration of 'device' hides class member
-  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(42): note: see declaration of 'VulkanBase::device'
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(369): warning C4458: declaration of 'device' hides class member
-  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(42): note: see declaration of 'VulkanBase::device'
-d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(449): warning C4838: conversion from 'int' to 'uint32_t' requires a narrowing conversion
-  TGameEngine.vcxproj -> D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.exe
-  TGameEngine.vcxproj -> D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.pdb (Partial PDB)
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(215): warning C4189: 'result': local variable is initialized but not referenced
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(223): warning C4458: declaration of 'device' hides class member
+  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(83): note: see declaration of 'VulkanBase::device'
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(258): warning C4458: declaration of 'device' hides class member
+  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(83): note: see declaration of 'VulkanBase::device'
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(322): warning C4458: declaration of 'device' hides class member
+  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(83): note: see declaration of 'VulkanBase::device'
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(341): warning C4458: declaration of 'device' hides class member
+  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(83): note: see declaration of 'VulkanBase::device'
+d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.cpp(374): warning C4458: declaration of 'device' hides class member
+  d:\documents - data\github\hobbyengine\tgameengine\tgameengine\vulkanbase.h(83): note: see declaration of 'VulkanBase::device'
+  TestInput.cpp
+  main.cpp
+  InputManager.cpp
+  InputCommand.cpp
+  IComponent.cpp
+  Generating Code...
+VulkanBase.obj : error LNK2005: "struct <unnamed-type-frameBuffers> frameBuffers" (?frameBuffers@@3U<unnamed-type-frameBuffers>@@A) already defined in main.obj
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+D:\Documents - Data\GitHub\HobbyEngine\TGameEngine\x64\Debug\TGameEngine.exe : fatal error LNK1169: one or more multiply defined symbols found

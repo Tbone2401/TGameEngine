@@ -137,6 +137,7 @@
     </ClCompile>
     <ClCompile Include="TestInput.cpp" />
     <ClCompile Include="VulkanBase.cpp" />
+    <ClCompile Include="VulkanDevice.cpp" />
     <ClCompile Include="VulkanHelper.cpp" />
     <ClCompile Include="vulkanSwapchain.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestInput.h" />
     <ClInclude Include="VulkanBase.h" />
+    <ClInclude Include="VulkanDevice.h" />
     <ClInclude Include="VulkanHelper.h" />
     <ClInclude Include="vulkanSwapchain.h" />
   </ItemGroup>
